@@ -57,3 +57,13 @@ func Sort[T any](list []T, sortFunc func(l, r T) bool) []T {
 	})
 	return list
 }
+
+func Filter[T any](list []T, filterFunc func(item T) bool) []T {
+	res := make([]T, 0, len(list))
+	for _, item := range list {
+		if filterFunc(item) {
+			res = append(res, item)
+		}
+	}
+	return res
+}

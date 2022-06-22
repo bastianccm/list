@@ -1,9 +1,10 @@
 package list_test
 
 import (
-	"github.com/bastianccm/list"
 	"strconv"
 	"testing"
+
+	"github.com/bastianccm/list"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -41,4 +42,6 @@ func TestList(t *testing.T) {
 	assert.Equal(t, []int{1, 2, 3, 4, 5}, list.Sort([]int{3, 5, 1, 2, 4}, func(l, r int) bool {
 		return l < r
 	}))
+
+	assert.Equal(t, []int{3, 1, 2}, list.Filter([]int{3, 5, 1, 2, 4}, func(item int) bool { return item <= 3 }))
 }
