@@ -1,6 +1,8 @@
 package list
 
-import "sort"
+import (
+	"sort"
+)
 
 // Contains checks if the needle element exists in a given haystack
 func Contains[T comparable](haystack []T, needle T) bool {
@@ -67,4 +69,15 @@ func Filter[T any](list []T, filterFunc func(item T) bool) []T {
 		}
 	}
 	return res
+}
+
+// Keys returns all map-keys for the provided map m
+func Keys[T comparable, U any](m map[T]U) []T {
+	var keys = make([]T, len(m))
+	var i = 0
+	for k := range m {
+		keys[i] = k
+		i++
+	}
+	return keys
 }

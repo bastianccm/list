@@ -44,4 +44,15 @@ func TestList(t *testing.T) {
 	}))
 
 	assert.Equal(t, []int{3, 1, 2}, list.Filter([]int{3, 5, 1, 2, 4}, func(item int) bool { return item <= 3 }))
+
+	assert.Equal(t, []string{"a", "b", "c"}, list.Keys(map[string]struct{}{
+		"a": {},
+		"b": {},
+		"c": {},
+	}))
+	assert.Equal(t, []int{10, 20, 30}, list.Keys(map[int]struct{}{
+		10: {},
+		20: {},
+		30: {},
+	}))
 }
