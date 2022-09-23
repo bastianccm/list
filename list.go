@@ -58,6 +58,7 @@ func Sort[T any](list []T, sortFunc func(l, r T) bool) []T {
 	return list
 }
 
+// Filter returns all items which pass the filterFunc
 func Filter[T any](list []T, filterFunc func(item T) bool) []T {
 	res := make([]T, 0, len(list))
 	for _, item := range list {
