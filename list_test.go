@@ -63,4 +63,15 @@ func TestList(t *testing.T) {
 	v, found = list.Find([]int{3, 1, 2}, func(in int) bool { return in == 7 })
 	assert.Equal(t, 0, v)
 	assert.False(t, found)
+
+	type testStruct struct {
+		num int
+	}
+	vts, found := list.Find([]testStruct{{num: 3}, {num: 1}, {num: 2}}, func(in testStruct) bool { return in.num == 1 })
+	assert.Equal(t, 1, vts.num)
+	assert.True(t, found)
+
+	vts, found = list.Find([]testStruct{{num: 3}, {num: 1}, {num: 2}}, func(in testStruct) bool { return in.num == 7 })
+	assert.Equal(t, 0, vts.num)
+	assert.False(t, found)
 }
