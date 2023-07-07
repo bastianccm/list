@@ -55,4 +55,12 @@ func TestList(t *testing.T) {
 		20: {},
 		30: {},
 	}))
+
+	v, found := list.Find([]int{3, 1, 2}, func(in int) bool { return in == 1 })
+	assert.Equal(t, 1, v)
+	assert.True(t, found)
+
+	v, found = list.Find([]int{3, 1, 2}, func(in int) bool { return in == 7 })
+	assert.Equal(t, 0, v)
+	assert.False(t, found)
 }

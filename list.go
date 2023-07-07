@@ -81,3 +81,13 @@ func Keys[T comparable, U any](m map[T]U) []T {
 	}
 	return keys
 }
+
+// Find finds an element in the haystick by given predicate
+func Find[T comparable](haystack []T, predicate func(T) bool) (T, bool) {
+	for _, candidate := range haystack {
+		if predicate(candidate) {
+			return candidate, true
+		}
+	}
+	return *new(T), false
+}
