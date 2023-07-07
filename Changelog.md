@@ -1,5 +1,11 @@
 # Changelog
 
+## Version v0.2.1 (2023-07-07)
+
+### Fixes
+
+- **filter:** allow any type (ef42ba65)
+
 ## Version v0.2.0 (2023-07-07)
 
 ### Features
