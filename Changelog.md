@@ -1,5 +1,11 @@
 # Changelog
 
+## Version v0.2.0 (2023-07-07)
+
+### Features
+
+- **find:** find element by given predicate (c167bce1)
+
 ## Version v0.1.0 (2023-02-02)
 
 ### Features
