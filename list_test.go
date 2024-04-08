@@ -2,6 +2,7 @@ package list_test
 
 import (
 	"strconv"
+	"strings"
 	"testing"
 
 	"github.com/bastianccm/list"
@@ -11,6 +12,12 @@ import (
 
 type kv struct {
 	k, v string
+}
+
+type testInt int
+
+func (i testInt) GetAsString() string {
+	return strconv.Itoa(int(i))
 }
 
 func TestList(t *testing.T) {
@@ -43,18 +50,21 @@ func TestList(t *testing.T) {
 		return l < r
 	}))
 
+	assert.Equal(t, []testInt{1, 2, 3, 4, 5}, list.SortEntries([]testInt{3, 5, 1, 2, 4}, strings.Compare, testInt.GetAsString))
+
 	assert.Equal(t, []int{3, 1, 2}, list.Filter([]int{3, 5, 1, 2, 4}, func(item int) bool { return item <= 3 }))
 
-	assert.Equal(t, []string{"a", "b", "c"}, list.Keys(map[string]struct{}{
+	assert.Equal(t, []string{"a", "b", "c"}, list.SortEntries(list.Keys(map[string]struct{}{
 		"a": {},
 		"b": {},
 		"c": {},
-	}))
-	assert.Equal(t, []int{10, 20, 30}, list.Keys(map[int]struct{}{
+	}), strings.Compare, list.PassEntry))
+
+	assert.Equal(t, []int{10, 20, 30}, list.Sort(list.Keys(map[int]struct{}{
 		10: {},
 		20: {},
 		30: {},
-	}))
+	}), func(l, r int) bool { return l < r }))
 
 	v, found := list.Find([]int{3, 1, 2}, func(in int) bool { return in == 1 })
 	assert.Equal(t, 1, v)

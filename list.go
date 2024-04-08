@@ -1,17 +1,13 @@
 package list
 
 import (
+	"slices"
 	"sort"
 )
 
 // Contains checks if the needle element exists in a given haystack
 func Contains[T comparable](haystack []T, needle T) bool {
-	for _, candidate := range haystack {
-		if candidate == needle {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(haystack, needle)
 }
 
 // Map transforms the list by running the f func on each element in list
@@ -57,6 +53,15 @@ func Sort[T any](list []T, sortFunc func(l, r T) bool) []T {
 	sort.Slice(list, func(i, j int) bool {
 		return sortFunc(list[i], list[j])
 	})
+	return list
+}
+
+func PassEntry[E comparable](e E) E {
+	return e
+}
+
+func SortEntries[S ~[]E, E any, C comparable](list S, comparator func(l, r C) int, getter func(E) C) S {
+	slices.SortFunc(list, func(l, r E) int { return comparator(getter(l), getter(r)) })
 	return list
 }
 
