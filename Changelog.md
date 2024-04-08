@@ -1,5 +1,11 @@
 # Changelog
 
+## Version v0.3.0 (2024-04-08)
+
+### Features
+
+- **list:** add SortEntries function (c3a71ad0)
+
 ## Version v0.2.1 (2023-07-07)
 
 ### Fixes
